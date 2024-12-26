@@ -172,34 +172,34 @@ namespace MovieCloud.Controllers
             };
             return View(model);
         }
-        public async Task<IActionResult> Admin(int? id)
-        {
-            var model = new AdminViewModel
-            {
-                SelectedId = id
-            };
-            return View(model);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Admin(AdminViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var admin = await _context.Admins
-                    .FirstOrDefaultAsync(a => a.Name == model.Username && a.Password == model.Password);
+        //public async Task<IActionResult> Admin(int? id)
+        //{
+        //    var model = new AdminViewModel
+        //    {
+        //        SelectedId = id
+        //    };
+        //    return View(model);
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Admin(AdminViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var admin = await _context.Admins
+        //            .FirstOrDefaultAsync(a => a.Name == model.Username && a.Password == model.Password);
 
-                if (admin != null)
-                {
-                    return RedirectToAction("Index", "Reviews");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid username or password.");
-                }
-            }
-            return View(model);
-        }
+        //        if (admin != null)
+        //        {
+        //            return RedirectToAction("Index", "Reviews");
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError(string.Empty, "Invalid username or password.");
+        //        }
+        //    }
+        //    return View(model);
+        //}
 
 
         [Route("movies/delete/{id}")]
