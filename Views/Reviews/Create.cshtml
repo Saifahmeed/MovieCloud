@@ -1,0 +1,105 @@
+﻿﻿@model MovieLab.Models.Review
+
+@{
+    ViewData["Title"] = "Create Review";
+}
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4 text-primary">Create Review</h1>
+        <h4 class="text-secondary">Share your thoughts</h4>
+    </div>
+    <div class="card shadow-lg p-4 mb-4" style="border-radius: 15px;">
+        <form asp-action="Create" class="row g-3 needs-validation" novalidate>
+            <div class="col-md-6">
+                <label asp-for="firstName" class="form-label">First Name</label>
+                <input asp-for="firstName" type="text" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">Looks good!</div>
+                <span asp-validation-for="firstName" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="lastName" class="form-label">Last Name</label>
+                <input asp-for="lastName" type="text" class="form-control" id="validationCustom02" required>
+                <div class="valid-feedback">Looks good!</div>
+                <span asp-validation-for="lastName" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Country" class="form-label">Country</label>
+                <input asp-for="Country" type="text" class="form-control" id="validationCustom03" required>
+                <div class="invalid-feedback">Please write your country.</div>
+                <div class="valid-feedback">Looks good!</div>
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Comment" class="form-label">Comment</label>
+                <textarea asp-for="Comment" maxlength="2500" rows="4" class="form-control" id="validationCustom04" required></textarea>
+                <div class="invalid-feedback">Please write your opinion about the movie.</div>
+                <div class="valid-feedback">Thank you for your feedback!</div>
+                <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Rate" class="form-label">Rating</label>
+                <input asp-for="Rate" type="number" class="form-control" value=" " min="0" max="10" step="0.1" id="Rate" required>
+                <div class="invalid-feedback">Please choose a rate out of 10.</div>
+                <div class="valid-feedback"></div>
+                <span asp-validation-for="Rate" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="MovieId" class="form-label">Movie</label>
+                <select asp-for="MovieId" class="form-control" asp-items="ViewBag.MovieId"></select>
+                <span asp-validation-for="MovieId" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                        Agree that you want to submit the form.
+                    </label>
+                    <div class="invalid-feedback">You must agree before submitting.</div>
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <button class="btn btn-primary btn-lg" type="submit">Create</button>
+            </div>
+        </form>
+    </div>
+    <div class="text-center mt-4">
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="@Model.MovieId" class="btn btn-outline-secondary btn-lg">
+            <i class="bi bi-arrow-left"></i> Back to Movie Details
+        </a>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $('#Rate').on('input', function () {
+            var rate = parseFloat($(this).val());
+            var feedback = $(this).siblings('.valid-feedback');
+
+            if (rate > 5) {
+                feedback.text("Looks like a good movie!");
+            } else {
+                feedback.text("Not great!");
+            }
+        });
+
+        (() => {
+            'use strict';
+
+            const forms = document.querySelectorAll('.needs-validation');
+
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+}
