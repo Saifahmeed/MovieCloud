@@ -10,7 +10,7 @@ namespace MovieCloud.Models
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Review> Reviews { get; set; }
-        //public DbSet<Admin> Admins { get; set; }
+        public DbSet<Admin> Admins { get; set; }
 
     }
 }
