@@ -23,9 +23,6 @@ This project is for learning purposes.
 - **jQuery**: JavaScript library for DOM manipulation and AJAX requests.
 - **Visual Studio**: Integrated development environment (IDE) for development.
 
-## Testing
-Check out this YouTube video for the website testing.
-[![YouTube](http://i.ytimg.com/vi/zbt0f06g43E/hqdefault.jpg)](https://www.youtube.com/watch?v=zbt0f06g43E)
 ## Getting Started
 1. Clone the repository:
 ```bash
