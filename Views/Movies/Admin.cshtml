@@ -1,0 +1,44 @@
+﻿@model AdminViewModel
+
+@{
+    ViewData["Title"] = "Admin Login";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border-light">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">
+                        <i class="bi bi-camera-reels"></i>
+                        Admin Login
+                    </h2>
+
+                    <form asp-action="Admin" method="post">
+                        <div class="form-group mb-3">
+                            <label class="form-label" asp-for="Username"></label>
+                            <input asp-for="Username" class="form-control" placeholder="Enter your username" />
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" asp-for="Password"></label>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mt-3">
+                            <i class="bi bi-lock"></i> Login
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
